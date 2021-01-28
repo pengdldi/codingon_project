@@ -5,22 +5,29 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+		<link href="https://cdn.rawgit.com/michalsnik/aos/1.0.1/dist/aos.css">
+		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> 
+		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>		
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
 		{% load static %}
 		<script src="{% static 'stopwatch.js' %}"></script>
 		<style>
+			html {
+				overflow-x: hidden;
+			}
 			 body {
 				width: 100vw;
 				height: 100vh;
 				position: relative;
 				background-image:url(https://source.unsplash.com/category/nature/1600x900);
 				background-repeat: no-repeat;
-				background-size:cover;				
+				background-size:cover;
+				background-attachment: fixed;				
 			}
 			
-			body::before {
+			body::before {				
 				content: "";
 				opacity: 0.5;
 				position: absolute;
@@ -28,25 +35,29 @@
 				left: 0px;
 				right: 0px;
 				bottom: 0px;
-				background-color: black;				
+				margin: 0px;
+				background-color: black;		
 			}
 			
-
+			ul{
+				list-style: none;
+				padding-left: 0px;
+			}
+			
 			.outer { 
 				margin-top: 10px;
 			}
 			
 			.title {
-				font-family: Arial, Helvetica, sans-serif;
-				font-size: 2em;
-				font-weight: bold;
+				font-family: "Gill Sans", sans-serif;
+				font-size: 1.5em;
 				color: white;
 				text-align: center;
 				border: 1px solid;
 			}
 			
 			.outer > div {
-				width: 250px;
+				width: 200px;
 				height: 200px;
 				display: inline-block;
 				vertical-align: top;
@@ -54,28 +65,34 @@
 			}
 			
 			.div1 {
-				width: 300px;
-				background-color: white;
-				opacity: 0.8;
+				width: 430px;
+				height: 40px;
 			}
 			
-			.div1 > .namearea {
-				border: none; 
-				background: transparent;				
+			.div1 .writeform{
+				width: 430px;
+				height: 40px;
+				background: transparent;
+				border:none;
+				border-bottom: 1px solid #fff;
+				outline: none;
+				color: fff;
+				font-style: oblique;
 			}
-					
+			
+			input::placeholder {
+				color: white;
+				font-size: 2em;
+			}
+			
 			.hello {
-				font-family: Arial, Helvetica, sans-serif;
+				font-family: "Gill Sans", sans-serif;
 				width: 500px;
 				color: white;
-				text-decoration: underline;
-				text-underline-position: under;
-				text-align : center;
-				font-size: 2em;
-				font-style: oblique;
+				text-align : center;				
+				margin-top: 20px;
 						
 			}
-			.h1 { color: white; }
 			
 			#cen {
 				height: 100vh;
@@ -88,10 +105,10 @@
 			}
 			
 			.list_item {
-				font-family: Arial, Helvetica, sans-serif;
+				font-family: sans-serif;
 				font-size: 1.5em;
-				font-weight: bold;
-				color: white;				
+				color: white;
+				text-align: center;
 			}
 			
 			#todo {
@@ -100,13 +117,15 @@
 			
 			.box{
 				width: 500px;
-				height: 150px;
+				height: 130px;
 			}
 			.timerBox{
 				width: 500px;
+				height: 120px;
 			}
 			.timerBox .time{
-				font-size: 5em;
+				height: 120px;
+				font-size: 6em;
 				color: white;
 				text-align: center;
 				font-family: sans-serif;
@@ -116,15 +135,25 @@
 			}
 			
 			.btnBox .fa{
-				margin: 0px 5px;
+				margin: 0px 2px;
 				font-size: 20pt;
 				cursor: pointer;
 			}		
 			
+			.aosbox {
+				width: 300px;
+				height: 250px;
+				background-color: black;
+				
+			}
+			
 		</style>
 	
 	</head>
-	<body>	
+	<body>
+		 <script> 
+            AOS.init(); 
+        </script>
 		<script type="text/javascript">
 
 			//<i class="bi bi-bookmark-check-fill"></i>
@@ -144,26 +173,25 @@
 							$( $( ".outer > .list2" ).children()[1] ).append(p);
 							$(this).remove();
 						});
-
+						
 						task.append(check,del)
 						
 						//#list
 						$( $( ".outer > .list1" ).children()[1] ).append(task);						
 						$("#todo").val("");
 						
-						function clear() {
-							console.log("ff");
-						}
-
-					}
-					
+						$(document).on("click", "button[name='clear']", function() {
+								var a = $("#flist").children();
+								var b = $("#slist").children();
+								a.remove();
+								b.remove();
+						});											
+					}					
 				})
 			});	
 			
-			
-		</script>	
+		</script>
 	
-		
 			<div id="cen">
 				<div id='box' class="box">
 					<div id='timerBox' class="timerBox">
@@ -177,34 +205,53 @@
 				</div>
 				
 				<div class="hello">
-					<p>HELLO; {{name1}}</p>
+					<h1>HELLO; {{name1}}</h1>
 				</div>
-				<!-- <div class="div1">
-						<input type="text" class="namearea" id="writename" placeholder="Yourname" aria-label="Username" aria-describedby="addon-wrapping">
-				</div> -->
 				
 				<div class="div1">
-				<input type="text" id="todo" class="form-control mr-3" placeholder="Write"> 
+				<input type="text" id="todo" class="writeform" placeholder="Write"> 
 				</div>
 				
 				<div class="outer">
 					<div class="list1">
 						<p class="title">#LIST</p>
-						<ul id="list">						
+						<ul id="flist">						
 						</ul>
 					</div>
 					
 					<div class="list2">
 						<p class="title">#FINISHED</p>
-						<ul id="fin">
+						<ul id="slist">
 							<!-- <li class="list-group-item">Cras justo odio</li> -->
 						</ul>
 					</div>
 				</div>
 				<div class="d-grid gap-2 d-md-block">
-					<button class="btn btn-primary" type="button" onclick="clear();">clear</button>
-				</div>
-				
+					<button class="btn btn-secondary btn-sm" type="button" name='clear'>clear</button>
+					<button class="btn btn-secondary btn-sm" type="button">save</button>
+				</div>				
 			</div>
+			
+
+			<div class="aosbox" data-aos="fade-up">
+					<span>sdgsf</span>
+			</div>
+			<div class="aosbox" data-aos="fade-up">
+					<span>sdgsf</span>
+			</div>
+			<div class="aosbox" data-aos="fade-up">
+					<span>sdgsf</span>
+			</div>
+			<div class="aosbox" data-aos="fade-up">
+					<span>sdgsf</span>
+			</div>
+			<div class="aosbox" data-aos="fade-up">
+					<span>sdgsf</span>
+			</div>
+			<div class="aosbox" data-aos="fade-up">
+					<span>sdgsf</span>
+			</div>
+			
+			
 	</body>
 </html>

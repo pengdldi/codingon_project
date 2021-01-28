@@ -4,5 +4,5 @@ from django.http.response import HttpResponse
 # Create your views here.
 def doit(request,uname):
     context = {'name1':uname}
-    return render(request,'ver14.html',context)
+    return render(request,'ver17.html',context)
 

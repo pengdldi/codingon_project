@@ -17,7 +17,7 @@
 			html {
 				overflow-x: hidden;
 			}
-			 body {
+			body {
 				width: 100vw;
 				height: 100vh;
 				position: relative;
@@ -43,7 +43,7 @@
 				list-style: none;
 				padding-left: 0px;
 			}
-			
+
 			.outer { 
 				margin-top: 10px;
 			}
@@ -57,20 +57,20 @@
 			}
 			
 			.outer > div {
-				width: 200px;
-				height: 200px;
+				width: 210px;
+				height: 250px;
 				display: inline-block;
 				vertical-align: top;
 				margin: 10px;
 			}
 			
 			.div1 {
-				width: 430px;
+				width: 450px;
 				height: 40px;
 			}
 			
 			.div1 .writeform{
-				width: 430px;
+				width: 450px;
 				height: 40px;
 				background: transparent;
 				border:none;
@@ -111,6 +111,13 @@
 				text-align: center;
 			}
 			
+			.timereport {
+				font-color: black;
+				background-color: black;
+				font-size: 12px;
+				
+			}
+			
 			#todo {
 				text-align : center;
 			}
@@ -144,7 +151,7 @@
 				width: 300px;
 				height: 250px;
 				background-color: black;
-				
+				margin: 10px;
 			}
 			
 		</style>
@@ -170,8 +177,10 @@
 						//#finished
 						var check = $("<i class='bi bi-bookmark-check-fill' name='ck'></i>").click(function() {
 							var p = $(this).parent();
+							var t = $("<p class='timereport'>"+$(".time").text()+"</p>");
 							$( $( ".outer > .list2" ).children()[1] ).append(p);
 							$(this).remove();
+							p.append(t);
 						});
 						
 						task.append(check,del)
@@ -186,13 +195,15 @@
 								a.remove();
 								b.remove();
 						});
-						
-						$(document).on("click", "button[name='save']", function() {
-							console.log($(".time").text());
-						});
+
+						/*$(document).on("click", "button[name='save']", function() {
+							var d = $("#slist").children('li');
+							var c = d.text();
+							$(".aosbox").append(c);
+						});*/
 					}					
 				})
-			});	
+			});		
 			
 		</script>
 	
@@ -225,37 +236,15 @@
 					
 					<div class="list2">
 						<p class="title">#FINISHED</p>
-						<ul id="slist">
-							<!-- <li class="list-group-item">Cras justo odio</li> -->
+						<ul id="slist">						
 						</ul>
 					</div>
 				</div>
 				<div class="d-grid gap-2 d-md-block">
-					<button class="btn btn-secondary btn-sm" type="button" name="clear">clear</button>
-					<button class="btn btn-secondary btn-sm" type="button" name="save">save</button>
+					<button class="btn btn-secondary btn-sm" type="button" name='clear'>clear</button>
+					<!-- <button class="btn btn-secondary btn-sm" type="button" name="save">save</button> -->
 				</div>				
 			</div>
-			
 
-			<div class="aosbox" data-aos="fade-up">
-					<span>sdgsf</span>
-			</div>
-			<div class="aosbox" data-aos="fade-up">
-					<span>sdgsf</span>
-			</div>
-			<div class="aosbox" data-aos="fade-up">
-					<span>sdgsf</span>
-			</div>
-			<div class="aosbox" data-aos="fade-up">
-					<span>sdgsf</span>
-			</div>
-			<div class="aosbox" data-aos="fade-up">
-					<span>sdgsf</span>
-			</div>
-			<div class="aosbox" data-aos="fade-up">
-					<span>sdgsf</span>
-			</div>
-			
-			
 	</body>
 </html>

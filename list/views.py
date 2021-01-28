@@ -3,6 +3,11 @@ from django.http.response import HttpResponse
 
 # Create your views here.
 def doit(request,uname):
-    context = {'name1':uname}
-    return render(request,'ver17.html',context)
+    context = {'welcome':uname}
+    return render(request,'ver18.html',context)
+
+def doit2(request):
+    context = {}
+    context['welcome'] = 'Welcome'
+    return render(request,'ver18.html',context)
 
